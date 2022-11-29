@@ -55,7 +55,7 @@
                 
                     <div class="container">
                         <h1 class="hero-title">Ефективні рішення для вашого бізнесу</h1>
-                        <button class="hero-btn" type="button">Замовити послугу</button>
+                        <button data-modal-open class="hero-btn" type="button">Замовити послугу</button>
                     </div>
                 
             </section>
@@ -112,9 +112,30 @@
                 <div class="container">
                     <h2 class="activity-title">Чим ми займаємося</h2>
                     <ul class="activity-list">
-                        <li class="item"> <img src="./images/img1.jpg" alt="Комп" width="370"></li>
-                        <li class="item"> <img src="./images/img2.jpg" alt="Телефон" width="370"></li>
-                        <li class="item"> <img src="./images/img3.jpg" alt="Планшет" width="370"></li>
+                        <li class="item"> 
+                            <div class="activity-cards">
+                                <img src="./images/img1.jpg" alt="Комп" width="370">
+                               <div class="activity-text"> 
+                                <p class="text">ДЕСКТОПНІ ДОДАТКИ</p>
+                               </div>
+                            </div>
+                        </li>
+                        <li class="item"> 
+                        <div class="activity-cards">
+                                <img src="./images/img2.jpg" alt="Телефон" width="370">
+                                <div class="activity-text">
+                                    <p class="text">МОБІЛЬНІ ДОДАТКИ</p>
+                                </div>
+                        </div>
+                        </li>
+                        <li class="item"> 
+                        <div class="activity-cards">
+                                <img src="./images/img3.jpg" alt="Планшет" width="370">
+                                <div class="activity-text">
+                                    <p class="text">ДИЗАЙНЕРСЬКІ РІШЕННЯ</p>
+                                </div>
+                        </div>
+                        </li>
                     </ul>
                 </div>
             
@@ -355,7 +376,7 @@
                 </address>
             </div>
             <div class="footer-soc-contact">
-            <h2 class="footer-title">ПРИЄДНУЙТЕСЬ</h2>
+            <p class="footer-title">ПРИЄДНУЙТЕСЬ</p>
             <ul class="footer-soc-list">
                <li class="footer-soc-item">
                  <a class="footer-soc-link" href="">
@@ -389,6 +410,17 @@
             </div>
 </div>
     </footer>
+<div class="backdrop is-hidden" data-modal>
+    <div class="modal">
+    <button data-modal-close type="button" class="close-modal-btn">
+        <svg class="icon-close" width="18" height="18">
+            <use href="./images/icons.svg#icon-close"></use>
+        </svg>
+    </button>
+    </div>
+</div>
+
+<script src="./js/modal.js"></script>
 </body>
 
 </html>

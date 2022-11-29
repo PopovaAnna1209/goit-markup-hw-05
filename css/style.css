@@ -15,6 +15,7 @@ html {
 --primary-background-color:#F5F5F5;
 --second-background-color:#F5F4FA;
 --svg: #AFB1B8;
+--cubic:cubic-bezier(0.4, 0, 0.2, 1);
 }
 body {
     font-family: 'Roboto', sans-serif;
@@ -106,6 +107,7 @@ border-bottom: 1px solid #ECECEC;
 }
 
 .header-nav-link {
+    position: relative;
     padding-top: 32px;
     padding-bottom: 32px;
     font-weight: 500;
@@ -114,15 +116,25 @@ border-bottom: 1px solid #ECECEC;
     letter-spacing: 0.02em;
     color: var(--title-text-color);
     text-decoration: none;
+    transition: color 250ms var(--cubic);
 }
 
 
 .header-nav-link:hover,
-.header-nav-link:focus {
-    color: var(--accent-color);
-}
+.header-nav-link:focus,
 .header-nav-link.current {
     color: var(--accent-color);
+}
+
+.current::after {
+    content: '';
+    position: absolute;
+    display: block;
+    bottom: 0;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background-color: var(--accent-color);
 }
 
 .header-contacts {
@@ -149,11 +161,14 @@ border-bottom: 1px solid #ECECEC;
     padding-bottom: 32px;
     color: var(--primary-text-color);
     gap: 10px;
+    transition: color 250ms var(--cubic);
 }
 .svg-mail {
+    transition: fill 250ms var(--cubic);
     fill: currentColor;
 }
 .svg-phone {
+    transition: fill 250ms var(--cubic);
     fill: currentColor;
 }
 
@@ -214,12 +229,12 @@ border-bottom: 1px solid #ECECEC;
     min-width: 216px;
     height: 50px;
     border: none;
+    transition: text-shadow 250ms var(--cubic);
 }
 
 .hero-btn:hover,
 .hero-btn:focus {
-    color: var(--primary-white-color);
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+ text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 }
 
 /*--------------Benefits------------*/
@@ -287,6 +302,34 @@ border-bottom: 1px solid #ECECEC;
 .activity-list .item {
     width: calc((100% - 60px) / 3);
 }
+.activity-cards {
+  position: relative;
+}
+.activity-cards::before {
+    display: inline-block;
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    min-height: 70px;
+    background-color: rgba(47, 48, 58, 0.8);
+}
+
+.activity-text {
+    display: flex;
+    position: absolute;
+    bottom: 27px;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    font-weight: 700;
+
+    font-size: 14px;
+    line-height: 1, 14;
+    letter-spacing: 0.03em;
+    color: var(--primary-white-color);
+}   
+
 
 /*-----------team-----------*/
 
@@ -359,6 +402,7 @@ border-bottom: 1px solid #ECECEC;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: background-color 250ms var(--cubic);
 }
 
 .team-soc-link:hover .team-soc-icon,
@@ -371,6 +415,7 @@ border-bottom: 1px solid #ECECEC;
 }
 .team-soc-icon {
     fill: var(--svg);
+    transition: fill 250ms var(--cubic);
 }
 
 
@@ -405,10 +450,12 @@ border-bottom: 1px solid #ECECEC;
     justify-content: center;
     border: 1px solid var(--svg);
     border-radius: 4px;
+    transition: border-color 250ms var(--cubic);
 }
 
 .customers-icon {
-    fill: var(--svg);    
+    fill: var(--svg); 
+    transition: fill 250ms var(--cubic);
 }
 
 .customers-link:hover,
@@ -461,6 +508,7 @@ border-bottom: 1px solid #ECECEC;
     font-size: 14px;
     line-height: 1.71;
     letter-spacing: 0.03em;
+    transition: color 250ms var(--cubic);
 
 }
 .footer-list li:not(:last-child) {
@@ -520,6 +568,7 @@ border-bottom: 1px solid #ECECEC;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: background-color 250ms var(--cubic);
 }
 
 .footer-soc-link:hover .footer-soc-icon,
@@ -534,7 +583,55 @@ border-bottom: 1px solid #ECECEC;
 
 .footer-soc-icon {
     fill: var(--primary-white-color);
+    transition: fill 250ms var(--cubic);
 }
+/*---------------Backdrop----------------*/
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    transition: opacity 250ms var(--cubic), visibility 250ms var(--cubic);
+    width: 100%;
+    height: 100%;
+    
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.backdrop.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+}
+.backdrop.is-hidden .modal {
+ transform: translate(-50%, -50%) scale(0.5) rotate(-360deg);
+}
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1) rotate(0);
+    transition: transform 250ms var(--cubic);
+    min-width: 528px;
+    min-height: 581px;
+    border-radius: 4px;
+    box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12);
+    background-color: var(--primary-white-color);
+    
+}
+.close-modal-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    background-color: var(--primary-white-color);
+}
+
 
 /*---------------Portfolio----------------*/
 
@@ -558,6 +655,7 @@ border-bottom: 1px solid #ECECEC;
     border-radius: 4px;
     color: var(--title-text-color);
     background-color: var(--second-background-color);
+    transition: color 250ms var(--cubic), background-color 250ms var(--cubic), box-shadow 250ms var(--cubic);
 }
 .all {
     padding: 6px 25px;
@@ -589,6 +687,8 @@ border-bottom: 1px solid #ECECEC;
 .portfolio-link {
     text-decoration: none;
     display: inline-block;
+    transition: box-shadow 250ms var(--cubic);
+    
 }
 .portfolio-link:hover,
 .portfolio-link:focus {
@@ -628,3 +728,42 @@ box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.16), 0px 4px 4px rgba(0, 0, 0, 0.06), 0p
     letter-spacing: 0.03em;
     color: var(--primary-text-color);
     }
+
+
+.portfolio-thumb {
+position: relative;
+display: flex;
+align-items: center;
+justify-content: center;
+
+}
+
+.portfolio-overlay {
+position: absolute;
+transform: translateY(100%);
+opacity: 0;
+transition: opacity 250ms var(--cubic), transform 250ms var(--cubic);
+
+width: 100%;
+height: 100%;
+    
+background-color: rgba(33, 150, 243, 0.9);
+}
+
+
+.portfolio-thumb-text {
+position: absolute;
+padding: 63px 24px;
+width: 100%;
+font-weight: 400;
+font-size: 18px;
+line-height: 1.56;
+letter-spacing: 0.03em;
+color: var(--primary-white-color)
+
+}
+
+.portfolio-link:hover .portfolio-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
