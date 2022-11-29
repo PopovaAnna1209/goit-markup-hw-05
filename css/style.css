@@ -508,14 +508,14 @@ border-bottom: 1px solid #ECECEC;
     font-size: 14px;
     line-height: 1.71;
     letter-spacing: 0.03em;
-    transition: color 250ms var(--cubic);
-
+    
 }
 .footer-list li:not(:last-child) {
    margin-bottom: 9px;
 }
 .footer-list a {
     text-decoration: none;
+    transition: color 250ms var(--cubic)
 }
 .footer-list a:hover,
 .footer-list a:focus {
@@ -735,6 +735,7 @@ position: relative;
 display: flex;
 align-items: center;
 justify-content: center;
+overflow: hidden;
 
 }
 
@@ -763,7 +764,8 @@ color: var(--primary-white-color)
 
 }
 
-.portfolio-link:hover .portfolio-overlay {
+.portfolio-link:hover .portfolio-overlay,
+.portfolio-link:focus .portfolio-overlay {
     opacity: 1;
     transform: translateY(0);
 }
